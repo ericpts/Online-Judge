@@ -1,11 +1,10 @@
 <?php
-    require("db.phpo");
+    require("db.php");
     if (isset ($_POST['submit'])){
-        $first_name = sanitize_post('first_name');
-        $last_name = $_POST['last_name'];
-        $username = $_POST['username'];
-        $pass1 = $_POST['pass1'];
-        $pass2 = $_POST['pass2'];
+        $username = sanitize_post('username');
+        $pass1 = sanitize_post('pass1');
+        $pass2 = sanitize_post('pass2');
+        $email = sanitize_post('email');
 
         $ok = 1;
         $query = search('login_data', 'username', $username);
@@ -36,23 +35,38 @@
         }
     }
 ?>
+<html>
+    <head>
+        <title>
+            Sheikharena
+        </title>
 
-<form method = "post" action = "index.php?page=register">
-First name:
-<input type = "text" name = "first_name">
-<br>
-Last name:
-<input type = "text" name = "last_name">
-<br>
-Username:
-<input type = "text" name = "username">
-<br>
-Password:
-<input type = "password" name = "pass1">
-<br>
-Repeat password:
-<input type = "password" name = "pass2">
-<br>
-<br>
-<button type = "submit" name = "submit"> Register </button>
-</form>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/signin.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+        <script src="js/bootstrap.js"></script>
+
+        <div class="container-fluid">
+            <form method="post" action="index.php?page=register" class="form-signin">
+            <fieldset>
+                <input type="text" maxlength="50" placeholder="Username" name="username" id="username" class="form-control"/>
+                <input type="password" maxlength="50" placeholder="Password" name="password" id="password" class="form-control"/>
+                <input type="text" maxlength="50" placeholder="Email" name="email" id="email" class="form-control"/>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="remember" value="remember"> Remember me
+                    </label>
+                </div>
+
+                <input type="submit" name="submit" value="Sign up" class="btn btn-default"/>
+            </fieldset>
+            </form>
+        </div>
+    </body>
+</html>
+
+

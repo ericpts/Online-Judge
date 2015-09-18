@@ -1,0 +1,13 @@
+CREATE DATABASE users;
+USE users;
+CREATE TABLE login_data(
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(50) NOT NULL,
+    register_date TIMESTAMP NOT NULL,
+    username VARCHAR(50) PRIMARY KEY NOT NULL,
+    salt VARCHAR(50) NOT NULL,
+    password_hash VARCHAR(64) NOT NULL
+    );
+
+    
