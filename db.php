@@ -12,20 +12,13 @@
         return $conn->real_escape_string($str);
     }
 
-    function user_exists($username) {
-        $query = search('login_data', 'username', $username);
-        if(!$query)
-            return false;
-        else
-            return true;
-    }
 
     function generate_salt() {
         global $salt_length;
         $length = $salt_length;
         $raw = openssl_random_pseudo_bytes($length);
         $str = base64_encode($raw);
-        return $str;
+        return substr($str, 0, $length);
     }
 
 

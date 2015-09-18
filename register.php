@@ -29,10 +29,6 @@ EOT;
         check_length('password', $password, $ok);
         check_length('email', $email, $ok);
 
-        if(user_exists($username)) {
-            echo "This username is already taken<br><br>";
-            $ok = 0;
-        }
         
         if ($ok){
             add_user($username, $password, $email);
