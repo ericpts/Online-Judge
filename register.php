@@ -1,48 +1,56 @@
 <?php
-    require("db.php");
+    require 'db.php';
+    require 'db_specs.php';
+
+    function check_length($name, $val, &$ok) {
+    
+        eval(sprintf("global \$max_%s_length;", $name));
+
+        $str = <<<EOT
+        if(strlen("%s") >= \$max_%s_length) {
+            echo "%s is too long<br><br>";
+            \$ok = 0;
+        }
+EOT;
+
+        $instruction = sprintf($str, $val, $name, $name);
+
+        eval($instruction);
+    }
+
     if (isset ($_POST['submit'])){
         $username = sanitize_post('username');
-        $pass1 = sanitize_post('pass1');
-        $pass2 = sanitize_post('pass2');
+        $password = sanitize_post('password');
         $email = sanitize_post('email');
 
-        $ok = 1;
-        $query = search('login_data', 'username', $username);
-        $row = mysqli_fetch_array ($query);
-        if ($row['username'] == $username){
-            echo "This username is already taken<br><br>";
-            $ok = 0;
-        }
 
-        if ($pass1 != $pass2){
-            echo "The two passwords don't match<br><br>";
+        $ok = 1;
+        check_length('username', $username, $ok);
+        check_length('password', $password, $ok);
+        check_length('email', $email, $ok);
+
+        if(user_exists($username)) {
+            echo "This username is already taken<br><br>";
             $ok = 0;
         }
         
         if ($ok){
-            //TODO:make password encryption
-              $password = $pass1;
-
-             $sql = "INSERT INTO login_data (first_name, last_name, username, password) VALUES ('$first_name', '$last_name', '$username', '$password');";
-
-        
-             mysqli_query ($conn, $sql)
-             or die (mysqli_error ($conn));
+            add_user($username, $password, $email);
        
     ?>
     <p style = "font-size: 25px; color: red"> Registered successfully </p>
-    <?php
+<html>
+<?php
         }
     }
 ?>
-<html>
     <head>
         <title>
             Sheikharena
         </title>
 
         <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/signin.css" rel="stylesheet">
+        <link href="css/signup.css" rel="stylesheet">
     </head>
 
     <body>
@@ -50,7 +58,7 @@
         <script src="js/bootstrap.js"></script>
 
         <div class="container-fluid">
-            <form method="post" action="index.php?page=register" class="form-signin">
+            <form method="post" action="index.php?page=register" class="form-signup">
             <fieldset>
                 <input type="text" maxlength="50" placeholder="Username" name="username" id="username" class="form-control"/>
                 <input type="password" maxlength="50" placeholder="Password" name="password" id="password" class="form-control"/>
