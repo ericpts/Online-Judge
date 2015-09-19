@@ -46,7 +46,7 @@ EOT;
 
     <body>
         <div class="container-fluid">
-            <form method="post" action="index.php?page=register" class="form-signup">
+            <form method="post" action="register.php" class="form-signup">
             <fieldset>
                 <input type="text" maxlength="50" placeholder="Username" name="username" id="username" class="form-control"/>
                 <input type="password" maxlength="50" placeholder="Password" name="password" id="password" class="form-control"/>

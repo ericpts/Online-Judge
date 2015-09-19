@@ -7,6 +7,12 @@
 
 <link rel="stylesheet" href="css/navigation.css"/>
 
+<script>
+    $(document).ready(function() {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+
 <div class="navbar navbar-default" role="navigation">
 <div class="container-fluid">
     

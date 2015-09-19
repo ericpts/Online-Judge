@@ -4,6 +4,7 @@
 ?>
 
 <?php require('navigation.php'); ?>
+
 <html>
 <head>
 	<link rel="stylesheet" href="css/main.css" /> 
