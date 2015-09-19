@@ -1,7 +1,12 @@
 <?php require 'bootstrap.php'; ?>
 <link rel="stylesheet" href="css/login.css">
 <div class="container-fluid">
-    <form method = "post"  action = "login.php" class="form-signin">
+<?php
+    $action = "login.php?location=" . urlencode($_SERVER['REQUEST_URI']);
+    echo <<<EOT
+    <form method = "post"  action = "$action" class="form-signin">
+EOT;
+?>
         <fieldset>
             <input maxlength="50" placeholder="Username" type="text" name="username" id="username" class="form-control"/>
 
