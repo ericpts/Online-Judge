@@ -1,9 +1,7 @@
 <?php
-	session_start ();
-	require ("connection.php");
+	require 'connection.php';
+    require 'navigation.php';
 ?>
-
-<?php require('navigation.php'); ?>
 
 <html>
 <head>

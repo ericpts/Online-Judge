@@ -42,5 +42,19 @@ EOT;
         mysqli_query($conn, $query)
             or die (mysqli_error($conn));
     }
+
+    function check_user_data($username, $password) {
+        $query = search('login_data', 'username', $username);
+        if($query) {
+            $row = mysqli_fetch_array($query);
+            $salt = $row['salt'];
+            $password_hash = hash("sha256", $password . $salt);
+            if($password_hash == $row['password_hash'])
+                return true;
+             else 
+                return false;
+        }
+        return false;
+    }
 ?>
 

@@ -1,4 +1,7 @@
-<?php require 'bootstrap.php'; ?>
+<?php 
+    if(empty($_SESSION))
+        session_start();
+    require 'bootstrap.php';?>
 
 <html>
 <head>
@@ -36,6 +39,7 @@
         <ul class="nav navbar-nav navbar-right">
 <?php if(empty($_SESSION['login'])) {
             ?>
+            <li><a href="register.php"><b>Register</b></a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
                 <ul id="login-dp" class="dropdown-menu">
@@ -48,16 +52,14 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="register.php"> <b>Register</b> </a></li>
 <?php
 }
         else {
-?>
-<form method="post" action="logout.php">
-    <input type="submit" value="Logout"/>
-</form>
-        <?php
-            echo "Hello, " . $_SESSION['user'];
+            echo "<li><a>Logged in as <b>" . $_SESSION['user'] . "</b></a></li>";
+            echo <<<EOT
+            <li><a href="logout.php"><i> Logout <i></a></li>";
+EOT;
+
         }
 ?>
         </ul>
