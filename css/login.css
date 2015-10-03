@@ -1,0 +1,9 @@
+.form-signup {
+    max-width: 233px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signup .form-control:focus {
+    z-index: 2;
+}

@@ -1,4 +1,5 @@
 <?php
+    require 'navigation.php';
     require 'db.php';
     require 'db_specs.php';
 
@@ -40,32 +41,17 @@ EOT;
         }
     }
 ?>
-    <head>
-        <title>
-            Sheikharena
-        </title>
 
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/signup.css" rel="stylesheet">
-    </head>
+<?php require 'bootstrap.php'; ?>
 
     <body>
-        <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
-        <script src="js/bootstrap.js"></script>
-
         <div class="container-fluid">
-            <form method="post" action="index.php?page=register" class="form-signup">
+            <form method="post" action="register.php" class="form-signup">
             <fieldset>
                 <input type="text" maxlength="50" placeholder="Username" name="username" id="username" class="form-control"/>
                 <input type="password" maxlength="50" placeholder="Password" name="password" id="password" class="form-control"/>
                 <input type="text" maxlength="50" placeholder="Email" name="email" id="email" class="form-control"/>
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="remember" value="remember"> Remember me
-                    </label>
-                </div>
-
+                <br>
                 <input type="submit" name="submit" value="Sign up" class="btn btn-default"/>
             </fieldset>
             </form>
